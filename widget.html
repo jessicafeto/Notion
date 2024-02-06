@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion Time Widget</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+    .widget {
+        background-color: #FFC0CB; /* Soft pink background */
+        color: #FFF; /* White text color */
+        border-radius: 15px; /* Rounded corners */
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 300px;
+        margin: 10px auto;
+    }
+    .time {
+        font-size: 32px;
+        font-weight: bold;
+    }
+    .date {
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="widget" id="timeWidget">
+    <div id="greeting">Good Afternoon,</div>
+    <div class="time" id="time"></div>
+    <div class="date" id="date"></div>
+</div>
+
+<script>
+function updateWidget() {
+    const now = new Date();
+    const hours = now.getHours();
+    const greeting = hours < 12 ? 'Good Morning Jessica' : hours < 18 ? 'Good Afternoon Jessica' : 'Good Evening Jessica';
+    document.getElementById('greeting').textContent = greeting;
+    document.getElementById('time').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+    document.getElementById('date').textContent = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Update the widget every second
+setInterval(updateWidget, 1000);
+updateWidget(); // Also update immediately on load
+</script>
+</body>
+</html>
